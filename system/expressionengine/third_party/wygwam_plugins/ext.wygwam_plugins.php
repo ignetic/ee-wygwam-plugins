@@ -8,7 +8,7 @@ class Wygwam_plugins_ext
     var $docs_url       = '';
     var $settings_exist = 'n';
 	
-	private static $_included_resources = FALSE;
+    private static $_included_resources = FALSE;
 
     private $_hooks = array(
         'wygwam_config',
@@ -71,22 +71,21 @@ class Wygwam_plugins_ext
 		// Scan directory for plugins
 		$plugins = array_diff(scandir($plugin_path), array('..', '.'));
 		
-		// Is this the first time we've been called?
-		if (!self::$_included_resources)
+		foreach ($plugins as $plugin_name)
 		{
-			foreach ($plugins as $plugin_name)
+			if (is_dir($plugin_path.$plugin_name) && substr($plugin_name, 0, 1) != '.')
 			{
-				if (is_dir($plugin_path.$plugin_name))
+				// Is this the first time we've been called?
+				if (!self::$_included_resources)
 				{
 					// Tell CKEditor where to find our plugin
 					ee()->cp->add_to_foot('<script type="text/javascript">CKEDITOR.plugins.addExternal("'.$plugin_name.'", "'.$plugin_url.$plugin_name.'/");</script>');
 					
-					// Add our plugin
-					$extraPlugins[] = $plugin_name;
-
 					// Don't do that again
 					self::$_included_resources = TRUE;
-				}
+				}			
+				// Add our plugin
+				$extraPlugins[] = $plugin_name;
 			}
 		}
 			
