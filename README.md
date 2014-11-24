@@ -1,7 +1,7 @@
 Wygwam Plugins
 =================
 
-Adds CKEditor plugins to Wygwam
+Adds CKEditor plugins to ExpressionEngine Wygwam addon
 
 After installing the addon, place your required Wygwam plugins in themes/third_party/wygwam_plugins/
 
