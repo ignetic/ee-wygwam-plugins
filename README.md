@@ -8,5 +8,5 @@ After installing the addon, place your required Wygwam plugins in themes/third_p
 An example statistics plugin is already placed in there:
 Downloaded from http://doksoft.com/soft/ckeditor-statistics/index.html
 
-To disable a plugin, rename the folder to contain a dot preceeding the name
+To disable a plugin, rename the folder to contain a dot or underscore preceeding the name
 Example: themes/third_party/wygwam_plugins/.wordcount

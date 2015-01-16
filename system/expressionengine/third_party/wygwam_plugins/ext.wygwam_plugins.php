@@ -73,7 +73,8 @@ class Wygwam_plugins_ext
 		
 		foreach ($plugins as $plugin_name)
 		{
-			if (is_dir($plugin_path.$plugin_name) && substr($plugin_name, 0, 1) != '.')
+			// Exclude any folders which begin with . or _
+			if (is_dir($plugin_path.$plugin_name) && (substr($plugin_name, 0, 1) != '.' && substr($plugin_name, 0, 1) != '_'))
 			{
 				// Is this the first time we've been called?
 				if ( ! isset(self::$_included_resources[$plugin_name]))
