@@ -32,6 +32,15 @@ CKEDITOR.plugins.add( 'fixed', {
 				
         window.addEventListener('scroll', function(){
 			
+			var fixedHeaderHeight = 0;
+			var fixedHeader = document.getElementsByClassName('nav-global-wrap');
+
+			if (fixedHeader.length > 0) {
+				headerStyle = window.getComputedStyle(fixedHeader.item(0));
+				if (headerStyle.position == 'fixed') {
+					fixedHeaderHeight = fixedHeader.item(0).offsetHeight;
+				}
+			}		
 			var editors = document.getElementsByClassName('cke');
 			for (var i=0; i < editors.length; i++) {
 
@@ -41,7 +50,7 @@ CKEDITOR.plugins.add( 'fixed', {
 				var inner               = editor.getElementsByClassName('cke_inner').item(0);
 				var scrollvalue         = document.documentElement.scrollTop > document.body.scrollTop ? document.documentElement.scrollTop : document.body.scrollTop;
 				
-				var editorOffset        = documentOffsetTop(editor);
+				var editorOffset        = documentOffsetTop(editor) - fixedHeaderHeight;
 
 				toolbar.style.top       = "0px";
 				toolbar.style.left      = "0px";
@@ -50,6 +59,7 @@ CKEDITOR.plugins.add( 'fixed', {
 				toolbar.style.boxSizing = "border-box";
 				toolbar.style.background = "#ffffff";
 				toolbar.style.borderBottomColor  = "#e6e6e6";
+				
 
 				if(editorOffset <= scrollvalue){
 					toolbar.style.position   = "fixed";
@@ -61,7 +71,10 @@ CKEDITOR.plugins.add( 'fixed', {
 					toolbar.style.margin    = "0";
 					//toolbar.style.left = editor.offsetLeft+"px";
 					toolbar.style.left = documentOffsetLeft(editor)+"px";
-					toolbar.style.boxShadow = "0px 0px 5px #aaaaaa"
+					toolbar.style.boxShadow = "0px 0px 5px #aaaaaa";
+					if (fixedHeaderHeight > 0) {
+						toolbar.style.top = fixedHeaderHeight+"px";
+					}
 				}
 
 				if(editorOffset > scrollvalue && (editorOffset + editor.offsetHeight) >= (scrollvalue + toolbar.offsetHeight)){

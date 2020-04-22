@@ -3,7 +3,7 @@
 class Wygwam_plugins_ext
 {
     var $name           = 'Wygwam Custom Plugins';
-    var $version        = '1.1';
+    var $version        = '1.2';
     var $description    = '';
     var $docs_url       = '';
     var $settings_exist = 'n';

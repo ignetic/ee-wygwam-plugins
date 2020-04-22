@@ -1,0 +1,13 @@
+Changelog for Wygwam Plugins
+============================
+
+## 1.1
+- **Update**: EE3 Compatilbility
+
+
+## 1.1
+- **Update**: Ensured that default plugins are loaded and themes directory is scanned correctly
+
+
+## 1.0
+- Release version 
